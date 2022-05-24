@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% block content %}
 <p>Topic: {{topic}}</p>
+<p>
+  <a href="{% url 'logs:new_entry' topic.id %}">Add new entry</a>
+</p>
 <ul>
   {% for entry in entries %}
   <li>
