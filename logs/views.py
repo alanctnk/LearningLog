@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import Topic
+from .models import Entry, Topic
 from .forms import EntryForm, TopicForm
 
 
@@ -67,3 +67,25 @@ def new_entry(request, pk):
             return HttpResponseRedirect(reverse("logs:topic", args=[pk]))
     context = {"topic": topic, "form": form}
     return render(request, "logs/new_entry.html", context)
+
+
+def edit_entry(request, pk):
+    """Edita uma entrada existente."""
+
+    entry = Entry.objects.get(id=pk)
+    topic = entry.topic
+    if request.method != "POST":
+        # Requisição inicial; preenche previamente o formulário
+
+        form = EntryForm(instance=entry)
+    else:
+        # Dados de POST submetidos; processa os dados
+
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+
+            form.save()
+
+            return HttpResponseRedirect(reverse("logs:topic", args=[topic.id]))
+    context = {"entry": entry, "topic": topic, "form": form}
+    return render(request, "logs/edit_entry.html", context)
