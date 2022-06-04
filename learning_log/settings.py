@@ -26,7 +26,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
@@ -147,7 +147,8 @@ if os.getcwd() == "/app":
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
     # Cabeçalhos para permitir todos os hosts
-    ALLOWED_HOSTS = ["*"]
+    DEBUG = False
+    ALLOWED_HOSTS = ["learning-log-8819.herokuapp.com/"]
 
     # Configuração de recursos estáticos
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
