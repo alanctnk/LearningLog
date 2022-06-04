@@ -62,7 +62,7 @@ ROOT_URLCONF = "learning_log.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "learning_log/templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -146,7 +146,7 @@ if os.getcwd() == "/app":
     # Honra o cabeçalho 'X-Forwarded-Proto' para request.is_secure()
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-    # Cabeçalhos para permitir todos os hosts
+    # Permite que apenas o Heroku seja o host do projeto
     ALLOWED_HOSTS = ["learning-log-8819.herokuapp.com"]
     DEBUG = False
 
