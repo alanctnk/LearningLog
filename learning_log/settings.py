@@ -145,7 +145,7 @@ if os.getcwd() == "/app":
     # Honra o cabeçalho 'X-Forwarded-Proto' para request.is_secure()
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     # Cabeçalhos para permitir todos os hosts
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = ["**.herokuapp.com"]
 
     # Configuração de recursos estáticos
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
