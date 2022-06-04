@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -23,7 +23,7 @@ def topics(request):
 @login_required
 def topic(request, pk):
     """Mostra um único assunto e todas as suas entradas."""
-    topic = Topic.objects.get(id=pk)
+    topic = get_object_or_404(Topic, id=pk)
     if topic.owner != request.user:
         raise Http404
     entries = topic.entry_set.order_by("-date_added")
